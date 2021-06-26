@@ -16,6 +16,6 @@ class TestBasePage:
         assert app.base_page.get_title()
 
     def test_page_has_test_data(self, app):
-        relative_path_from_here_to_yaml = join("..", "..", "resources", "test_data", 'customer_data.yaml')
+        relative_path_from_here_to_yaml = join("..", "..", "resources", "test_data", 'data.yaml')
         data = get_yaml(__file__, relative_path_from_here_to_yaml)
         assert app.base_page.data['test_customer']['first_name'] == data['test_customer']['first_name']
