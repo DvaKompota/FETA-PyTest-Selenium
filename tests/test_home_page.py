@@ -27,3 +27,12 @@ class TestHomePage:
         page.wait_element_displayed(page.heading_banner)
         assert all([page.is_displayed(element) for element in page.category_happy_elements])
         assert all([page.is_displayed(element) for element in page.dresses_happy_elements])
+
+    def test_home_page_tshirts_button(self, app):
+        page = app.home_page
+        page.open_home_page()
+        page.click(page.tshirts_section)
+        page = app.tshirts_page
+        page.wait_element_displayed(page.heading_banner)
+        assert all([page.is_displayed(element) for element in [page.product_list, page.left_column]]) # no subcategories
+        assert all([page.is_displayed(element) for element in page.tshirts_happy_elements])
