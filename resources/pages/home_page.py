@@ -19,8 +19,8 @@ class HomePage(BasePage):
     google_button = (By.XPATH, '//*[@class="google-plus"]')
     footer = (By.XPATH, '//*[@id="footer"]')
 
-    happy_elements = [header, sign_in_button, search_bar, shopping_cart, top_menu, women_section, dresses_section,
-                      tshirts_section, facebook_button, twitter_button, youtube_button, google_button, footer]
+    home_happy_elements = [header, sign_in_button, search_bar, shopping_cart, top_menu, women_section, dresses_section,
+                           tshirts_section, facebook_button, twitter_button, youtube_button, google_button, footer]
 
     def open_home_page(self):
         self.open_url(self.data['home_url'])
