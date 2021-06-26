@@ -31,7 +31,7 @@ class BasePage:
             wait = WebDriverWait(self.driver, wait_time if wait_time else self.driver_wait, poll_frequency)
         else:
             wait = WebDriverWait(self.driver, wait_time if wait_time else self.driver_wait)
-        return wait.until(EC.presence_of_element_located(locator))
+        return wait.until(EC.presence_of_element_located(locator), message=f'Element {locator} is not present')
 
     def is_displayed(self, locator):
         try:
