@@ -7,11 +7,10 @@ from resources.utils.file_ops import get_yaml
 
 
 @pytest.fixture(scope="session")
-def driver():
+def driver(data):
+    settings = data['web_driver_settings']
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
+    options.add_argument('--headless') if settings['headless'] else None
     driver = webdriver.Chrome(options=options)
     yield driver
     driver.close()
@@ -19,7 +18,7 @@ def driver():
 
 @pytest.fixture(scope="session")
 def data():
-    relative_path_from_here_to_yaml = join("..", "resources", "test_data", 'customer_data.yaml')
+    relative_path_from_here_to_yaml = join("..", "resources", "test_data", 'data.yaml')
     data = get_yaml(__file__, relative_path_from_here_to_yaml)
     return data
 
