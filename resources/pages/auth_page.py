@@ -13,6 +13,7 @@ class AuthenticationPage(HomePage):
     login_password_field = (By.XPATH, '//*[@id="passwd"]')
     forgot_password_link = (By.XPATH, '//*[@class="lost_password form-group"]/a')
     login_button = (By.XPATH, '//*[@id="SubmitLogin"]')
+    login_alert = (By.XPATH, '//*[@id="center_column"]/*[@class="alert alert-danger"]')
 
     auth_happy_elements = [auth_heading, create_account_form, create_account_email_field, create_account_button,
                            login_form, login_email_field, login_password_field, forgot_password_link, login_button]

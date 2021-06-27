@@ -1,5 +1,6 @@
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.remote.webelement import By
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -65,6 +66,14 @@ class BasePage:
     def click(self, locator):
         self.wait_element_displayed(locator)
         self.get_element(locator).click()
+
+    def clear_field(self, locator):
+        self.wait_element_displayed(locator)
+        element = self.get_element(locator)
+        element.send_keys(Keys.COMMAND + "a")
+        element.send_keys(Keys.CONTROL + "a")
+        element.send_keys(Keys.DELETE)
+        element.send_keys(Keys.BACKSPACE)
 
     def enter_text(self, locator, text):
         self.wait_element_displayed(locator)

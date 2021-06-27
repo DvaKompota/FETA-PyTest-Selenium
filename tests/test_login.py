@@ -18,6 +18,7 @@ class TestLogin:
         page.click(page.create_account_button)
         page = app.create_account_page
         page.wait_element_displayed(page.create_account_heading)
+        [page.wait_element_displayed(element) for element in page.create_account_happy_elements]
         assert all([page.is_displayed(element) for element in page.create_account_happy_elements])
         # First name
         page.enter_text(page.pi_first_name_field, customer['first_name'])
@@ -57,3 +58,82 @@ class TestLogin:
         assert not page.is_displayed(page.sign_in_button)
         assert page.is_displayed(page.account_button)
         assert page.get_element_text(page.account_button) == f'{customer["first_name"]} {customer["last_name"]}'
+        page.click(page.sign_out_button)
+        page.wait_element_displayed(app.auth_page.auth_heading)
+
+    def test_login_with_valid_credentials(self, app):
+        page = app.auth_page
+        customer = page.data['test_customer']
+        self.test_create_account(app) if '{placeholder}' in customer['email'] else None
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'])
+        page.enter_text(page.login_password_field, customer['password'])
+        page.click(page.login_button)
+        page = app.my_account_page
+        page.wait_element_displayed(page.my_account_heading)
+        assert all([page.is_displayed(element) for element in page.my_account_happy_elements])
+        assert page.is_displayed(page.sign_out_button)
+        assert not page.is_displayed(page.sign_in_button)
+        assert page.is_displayed(page.account_button)
+        assert page.get_element_text(page.account_button) == f'{customer["first_name"]} {customer["last_name"]}'
+        page.click(page.sign_out_button)
+        page.wait_element_displayed(app.auth_page.auth_heading)
+
+    def test_login_with_invalid_credentials(self, app):
+        page = app.auth_page
+        customer = page.data['test_customer']
+        self.test_create_account(app) if '{placeholder}' in customer['email'] else None
+        # Trying to login with empty email
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_password_field, customer['password'])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "An email address required." in page.get_element_text(page.login_alert)
+        # Trying to login with empty password
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "Password is required." in page.get_element_text(page.login_alert)
+        # Trying to login with invalid email (no last character)
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'][:-1])
+        page.enter_text(page.login_password_field, customer['password'])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "Authentication failed." in page.get_element_text(page.login_alert)
+        # Trying to login with invalid email (no first character)
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'][1:])
+        page.enter_text(page.login_password_field, customer['password'])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "Authentication failed." in page.get_element_text(page.login_alert)
+        # Trying to login with invalid password (no last character)
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'])
+        page.enter_text(page.login_password_field, customer['password'][:-1])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "Authentication failed." in page.get_element_text(page.login_alert)
+        # Trying to login with invalid password (no first character)
+        page.open_home_page()
+        page.click(page.sign_in_button)
+        page.wait_element_displayed(page.auth_heading)
+        page.enter_text(page.login_email_field, customer['email'])
+        page.enter_text(page.login_password_field, customer['password'][1:])
+        page.click(page.login_button)
+        page.wait_element_displayed(page.login_alert)
+        assert "Authentication failed." in page.get_element_text(page.login_alert)
