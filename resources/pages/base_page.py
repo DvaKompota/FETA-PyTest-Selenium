@@ -73,3 +73,9 @@ class BasePage:
     def get_element_attribute(self, locator, attribute):
         self.wait_element_displayed(locator)
         return self.get_element(locator).get_attribute(attribute)
+
+    def get_current_url(self):
+        return self.driver.current_url
+
+    def switch_to_last_tab(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
