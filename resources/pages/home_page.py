@@ -7,6 +7,7 @@ class HomePage(BasePage):
     header = (By.XPATH, '//*[@id="header"]')
     sign_in_button = (By.XPATH, '//*[@class="login"]')
     search_bar = (By.XPATH, '//*[@id="search_query_top"]')
+    search_button = (By.XPATH, '//button[@name="submit_search"]')
     shopping_cart = (By.XPATH, '//*[@class="shopping_cart"]')
     top_menu = (By.XPATH, '//*[@id="block_top_menu"]')
     women_section = (By.XPATH, f'{top_menu[1]}//a[@title="Women"]')

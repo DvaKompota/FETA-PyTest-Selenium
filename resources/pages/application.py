@@ -3,6 +3,7 @@ from resources.pages.home_page import HomePage
 from resources.pages.women_page import WomenPage
 from resources.pages.dresses_page import DressesPage
 from resources.pages.tshirts_page import TshirtsPage
+from resources.pages.search_page import SearchPage
 
 
 class Application:
@@ -13,3 +14,4 @@ class Application:
         self.women_page = WomenPage(app_data)
         self.dresses_page = DressesPage(app_data)
         self.tshirts_page = TshirtsPage(app_data)
+        self.search_page = SearchPage(app_data)
