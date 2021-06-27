@@ -1,9 +1,11 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.remote.webelement import By
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from time import time, sleep
 
 
@@ -35,8 +37,10 @@ class BasePage:
 
     def is_displayed(self, locator):
         try:
-            return self.get_element(locator).is_displayed()
+            return self.get_element(locator, wait_time=0.05, poll_frequency=0.01).is_displayed()
         except NoSuchElementException:
+            return False
+        except TimeoutException:
             return False
 
     def wait_element_displayed(self, locator):
@@ -76,6 +80,10 @@ class BasePage:
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def select_item_from_dropdown(self, item_text, dropdown_locator):
+        select = Select(self.get_element(dropdown_locator))
+        select.select_by_visible_text(item_text)
 
     def switch_to_last_tab(self):
         self.driver.switch_to.window(self.driver.window_handles[-1])
