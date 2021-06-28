@@ -1,6 +1,26 @@
 # Theorem Job Interview Prototype Task
 <br/>
 
+## Installation and running instructions:
+#### 1. To install the framework on your local machine:
+- clone the repo from GitHub
+- open terminal in the local repo directory and run the following commands:
+<br/>
+`pip3 install pytest PyYAML selenium`
+<br/>
+`export PYTHONPATH=:.`
+<br/>
+#### 2. To run tests
+- to run all the tests in the repo run:
+<br/>
+`pytest tests/`
+- to run only tests for a specific feature add the filename to the command, e.g.: 
+<br/>
+`pytest tests/test_01_home_page.py`
+<br/>
+<br/>
+
+---
 ## Things to be added ASAP:
 #### 1. A script file for the Client to trigger test runs without terminal commands
 #### 2. A requirements.txt file to provide necessary documentation for the framework setup
