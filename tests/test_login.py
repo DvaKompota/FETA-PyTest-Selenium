@@ -1,5 +1,6 @@
 import pytest
 from resources.utils.file_ops import generate_customer
+from resources.utils.create_account import create_account
 
 
 @pytest.mark.login
@@ -64,7 +65,7 @@ class TestLogin:
     def test_login_with_valid_credentials(self, app):
         page = app.auth_page
         customer = page.data['test_customer']
-        self.test_create_account(app) if '{placeholder}' in customer['email'] else None
+        create_account(app) if '{placeholder}' in customer['email'] else None
         page.open_home_page()
         page.click(page.sign_in_button)
         page.wait_element_displayed(page.auth_heading)
@@ -84,7 +85,7 @@ class TestLogin:
     def test_login_with_invalid_credentials(self, app):
         page = app.auth_page
         customer = page.data['test_customer']
-        self.test_create_account(app) if '{placeholder}' in customer['email'] else None
+        create_account(app) if '{placeholder}' in customer['email'] else None
         # Trying to login with empty email
         page.open_home_page()
         page.click(page.sign_in_button)
