@@ -11,6 +11,8 @@ def driver(data):
     settings = data['web_driver_settings']
     options = Options()
     options.add_argument('--headless') if settings['headless'] else None
+    options.add_argument('start-maximized') if settings['maximized'] else None
+    options.add_argument('start-fullscreen') if settings['fullscreen'] else None
     driver = webdriver.Chrome(options=options)
     yield driver
     driver.close()

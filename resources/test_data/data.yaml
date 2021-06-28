@@ -2,6 +2,8 @@ home_url: http://automationpractice.com/
 
 web_driver_settings:
   headless: True
+  maximized: True
+  fullscreen: False
   wait_time: 20
 
 test_customer:

@@ -1,4 +1,5 @@
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -89,6 +90,13 @@ class BasePage:
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def hover_to(self, locator):
+        if type(locator) is WebElement:
+            ActionChains(self.driver).move_to_element(locator).perform()
+        else:
+            element = self.get_element(locator)
+            ActionChains(self.driver).move_to_element(element).perform()
 
     def select_item_from_dropdown(self, item_text, dropdown_locator):
         select = Select(self.get_element(dropdown_locator))
