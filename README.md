@@ -12,6 +12,7 @@
 `pytest tests/`
 - to run only tests for a specific feature add the filename to the command, e.g.:<br/>
 `pytest tests/test_01_home_page.py`
+- by default tests are running in headless browser mode; if you want to actually see the browser window, open `resources/test_data/data.yaml` file and change `web_driver_settings.headless` to `False`<br/>
 <br/>
 
 ---
