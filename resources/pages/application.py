@@ -9,6 +9,11 @@ from resources.pages.create_account_page import CreateAccountPage
 from resources.pages.my_account_page import MyAccountPage
 from resources.pages.shopping_cart_page import ShoppingCartPage
 from resources.pages.product_page import ProductPage
+from resources.pages.addresses_page import AddressesPage
+from resources.pages.shipping_page import ShippingPage
+from resources.pages.payment_page import PaymentPage
+from resources.pages.order_summary_page import OrderSummaryPage
+from resources.pages.order_confirmation_page import OrderConfirmationPage
 
 
 class Application:
@@ -25,3 +30,8 @@ class Application:
         self.my_account_page = MyAccountPage(app_data)
         self.shopping_cart_page = ShoppingCartPage(app_data)
         self.product_page = ProductPage(app_data)
+        self.addresses_page = AddressesPage(app_data)
+        self.shipping_page = ShippingPage(app_data)
+        self.payment_page = PaymentPage(app_data)
+        self.order_summary_page = OrderSummaryPage(app_data)
+        self.order_confirmation_page = OrderConfirmationPage(app_data)
