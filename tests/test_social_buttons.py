@@ -33,6 +33,6 @@ class TestSocialButtons:
         page.switch_to_last_tab()
         # disabled because 1) google requires authorization; 2) Google+ doesn't support brand pages any more
         # assert page.get_current_url() == page.data['social_links']['google']
-        group_no = re.search(r'\d*', page.data['social_links']['google'])[0]
+        group_no = re.search(r'\d+', page.data['social_links']['google'])[0]
         assert group_no in page.get_current_url()
 

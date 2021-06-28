@@ -7,6 +7,8 @@ from resources.pages.search_page import SearchPage
 from resources.pages.auth_page import AuthenticationPage
 from resources.pages.create_account_page import CreateAccountPage
 from resources.pages.my_account_page import MyAccountPage
+from resources.pages.shopping_cart_page import ShoppingCartPage
+from resources.pages.product_page import ProductPage
 
 
 class Application:
@@ -21,3 +23,5 @@ class Application:
         self.auth_page = AuthenticationPage(app_data)
         self.create_account_page = CreateAccountPage(app_data)
         self.my_account_page = MyAccountPage(app_data)
+        self.shopping_cart_page = ShoppingCartPage(app_data)
+        self.product_page = ProductPage(app_data)
