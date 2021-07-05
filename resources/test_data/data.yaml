@@ -9,7 +9,7 @@ web_driver_settings:
 test_customer:
   first_name: John
   last_name: Doe
-  email: theorem+{placeholder}@gmail.com
+  email: email+{placeholder}@gmail.com
   password: Pass{placeholder}!@#
   address1: 621 Cowan Ave
   city: Los Angeles
