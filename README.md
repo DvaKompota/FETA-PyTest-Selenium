@@ -1,4 +1,4 @@
-# Pytest Front-end Test Automation Framework prototype 
+# Front End Test Automation Framework with Pytest
 <br/>
 
 ## Installation and running instructions:
