@@ -17,6 +17,13 @@ from resources.pages.order_confirmation_page import OrderConfirmationPage
 
 
 class Application:
+    """Returns an object, containing all the Page Objects of the web application under test.
+
+    Includes BasePage with all its standard methods (get_element, is_displayed, click, etc.)
+    and all the child page objects (HomePage, ProductPage, ShoppingCartPage, etc.)
+    with all their locators (header, search_bar, product_name, footer, etc.)
+    and specific methods (get_product_name, add_product_to_cart, etc.)
+    """
 
     def __init__(self, app_data):
         self.base_page = BasePage(app_data)
