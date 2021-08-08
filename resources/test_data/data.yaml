@@ -6,6 +6,14 @@ web_driver_settings:
   fullscreen: False
   wait_time: 20
 
+whitelisted_characters:
+  digits: '0123456789'
+  letters_basic: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  letters_extended: ''
+  symbols_basic: "' -.`~´"
+  symbols_extended: '!"#$%&()*+,/:;<=>?@[\]^_{|}'
+  blacklisted: '±£¥×÷§¨'
+
 test_customer:
   first_name: John
   last_name: Doe

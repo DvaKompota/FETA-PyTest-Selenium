@@ -1,4 +1,4 @@
-from resources.utils.file_ops import generate_customer
+from resources.utils.create_data import generate_customer
 
 
 def create_account(app):
